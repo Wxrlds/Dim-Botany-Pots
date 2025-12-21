@@ -1,0 +1,9 @@
+{
+    "replace": false,
+    "values": [
+        "dimbotanypots:dimensional_botany_pot",
+        "dimbotanypots:elite_dimensional_botany_pot",
+        "dimbotanypots:ultra_dimensional_botany_pot",
+        "dimbotanypots:mega_dimensional_botany_pot"
+    ]
+}

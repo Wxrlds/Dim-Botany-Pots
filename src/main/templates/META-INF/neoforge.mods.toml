@@ -1,0 +1,54 @@
+modLoader = "javafml"
+loaderVersion = "${loader_version_range}"
+license = "${mod_license}"
+issueTrackerURL = "https://github.com/Wxrlds/DimBotanyPots"
+
+# Dim Botany Pots
+[[mods]]
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "${mod_name}"
+displayURL = "https://github.com/Wxrlds/DimBotanyPots"
+credits = "Darkhax for Botany Pots and Edivad99 for DimStorage"
+authors = "${mod_authors}"
+description = '''${mod_description}'''
+
+# NeoForge
+[[dependencies.${ mod_id }]]
+modId = "neoforge"
+type = "required"
+versionRange = "[${neo_version},)"
+ordering = "NONE"
+side = "BOTH"
+
+# Minecraft
+[[dependencies.${ mod_id }]]
+modId = "minecraft"
+type = "required"
+versionRange = "${minecraft_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+# Botany Pots
+[[dependencies.${ mod_id }]]
+modId = "botanypots"
+type = "required"
+versionRange = "[1.21.1-21,)"
+ordering = "NONE"
+side = "BOTH"
+
+# DimStorage
+[[dependencies.${ mod_id }]]
+modId = "dimstorage"
+type = "required"
+versionRange = "[1.21-3,)"
+ordering = "NONE"
+side = "BOTH"
+
+# Botany Pots Tiers
+[[dependencies.${ mod_id }]]
+modId = "botanypotstiers"
+type = "optional"
+versionRange = "[7,)"
+ordering = "AFTER"
+side = "BOTH"

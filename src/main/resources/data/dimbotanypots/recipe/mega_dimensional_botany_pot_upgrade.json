@@ -1,0 +1,17 @@
+{
+    "type": "dimbotanypots:crafting_dimbotanypot",
+    "group": "dimbotanypots",
+    "category": "misc",
+    "ingredients": [
+        {
+            "item": "dimbotanypots:dimensional_botany_pot"
+        },
+        {
+            "tag": "botanypotstiers:mega_hopper_botany_pots"
+        }
+    ],
+    "result": {
+        "id": "dimbotanypots:mega_dimensional_botany_pot",
+        "count": 1
+    }
+}

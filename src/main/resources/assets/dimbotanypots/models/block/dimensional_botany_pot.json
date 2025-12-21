@@ -1,0 +1,8 @@
+{
+    "parent": "botanypots:block/template/hopper_pot",
+    "render_type": "minecraft:cutout",
+    "textures": {
+        "material": "dimstorage:block/dimchest_top",
+        "material_top": "dimbotanypots:block/dim_pot_top"
+    }
+}

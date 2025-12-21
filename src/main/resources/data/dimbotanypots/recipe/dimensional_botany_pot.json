@@ -1,0 +1,25 @@
+{
+    "type": "dimbotanypots:crafting_dimbotanypot",
+    "group": "dimbotanypots",
+    "category": "misc",
+    "ingredients": [
+        {
+            "tag": "dimbotanypots:hopper_botany_pots"
+        },
+        [
+            {
+                "item": "dimstorage:dimensional_chest"
+            },
+            {
+                "item": "dimstorage:dimensional_tank"
+            },
+            {
+                "item": "dimstorage:dimensional_tablet"
+            }
+        ]
+    ],
+    "result": {
+        "id": "dimbotanypots:dimensional_botany_pot",
+        "count": 1
+    }
+}

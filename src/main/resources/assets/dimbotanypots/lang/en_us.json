@@ -1,0 +1,13 @@
+{
+    "dimbotanypots.tooltip.dimpot": "A small pot for growing many kinds of plants. Automatically places output in the Dimensional Chest",
+    "block.dimbotanypots.dimensional_botany_pot": "Dimensional Botany Pot",
+    "itemGroup.dimbotanypots": "Dimensional Botany Pots",
+    "dimbotanypots.tooltip.frequency": "Frequency",
+    "dimbotanypots.jei.description": "Change the frequency of the Pot, by right-click it with an Dimensional Chest, Dimensional Tank, Dimensional Tablet, or another Dimensional Botany Pot.\\n\\nAlternatively, hold one of these in your off-hand while placing the Pot to apply its frequency to the placed Pot.",
+    "dimbotanypots.chat.frequency_changed": "Frequency changed",
+    "dimbotanypots.chat.not_owner": "Cannot change frequency. You are not the owner of this Pot",
+    "dimbotanypots.tooltip.owner": "Owner",
+    "block.dimbotanypots.elite_dimensional_botany_pot": "Elite Dimensional Botany Pot",
+    "block.dimbotanypots.ultra_dimensional_botany_pot": "Ultra Dimensional Botany Pot",
+    "block.dimbotanypots.mega_dimensional_botany_pot": "Mega Dimensional Botany Pot"
+}
