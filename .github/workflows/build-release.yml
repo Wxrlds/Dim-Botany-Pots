@@ -126,7 +126,7 @@ jobs:
 
           curseforge-dependencies: |
             botany-pots(required)
-            dimstorage-1-8(required)
+            dimstorage(required)
             the-one-probe(optional)
             jei(optional)
             botany-pots-tiers(optional)
