@@ -118,7 +118,7 @@ public class DimensionalBotanyPotBlock extends BotanyPotBlock {
 
                 Frequency newFreq = DimBotanyPotHelper.getFrequency(stack);
 
-                if (!currentFreq.toString().equals(newFreq.toString())) {
+                if (!currentFreq.equals(newFreq)) {
                     if (!level.isClientSide) {
                         pot.setFrequency(newFreq);
                         sendFrequencyMessage(player, newFreq);
