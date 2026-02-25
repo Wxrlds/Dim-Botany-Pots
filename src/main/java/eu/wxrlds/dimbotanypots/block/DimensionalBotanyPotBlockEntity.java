@@ -36,6 +36,7 @@ public class DimensionalBotanyPotBlockEntity extends BotanyPotBlockEntity {
 
     private Frequency frequency = new Frequency();
     private int bonemealCooldown = 0;
+    private DimChestStorage cachedDimStorage;
 
     public DimensionalBotanyPotBlockEntity(BlockPos pos, BlockState state) {
         super((Supplier) DimBotanyPots.DIMENSIONAL_BOTANY_POT_TILE, pos, state);
@@ -194,8 +195,10 @@ public class DimensionalBotanyPotBlockEntity extends BotanyPotBlockEntity {
             if (pot.exportCooldown.getTicks() <= 0) {
                 if (level instanceof ServerLevel) {
                     // Try to export to Dim Storage
-                    DimChestStorage storage = (DimChestStorage) DimStorageManager.instance(level).getStorage(level.registryAccess(), pot.frequency, "item");
-                    IItemHandler dimHandler = new InvWrapper(storage);
+                    if (pot.cachedDimStorage == null) {
+                        pot.cachedDimStorage = (DimChestStorage) DimStorageManager.instance(level).getStorage(level.registryAccess(), pot.frequency, "item");
+                    }
+                    IItemHandler dimHandler = new InvWrapper(pot.cachedDimStorage);
                     boolean inventoryChanged = false;
 
                     for (int slot : BotanyPotBlockEntity.STORAGE_SLOTS) {
