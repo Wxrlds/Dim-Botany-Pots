@@ -71,7 +71,7 @@ jobs:
           loaders: |
             ${{ steps.info.outputs.mod_loader }}
           version-type: ${{ steps.info.outputs.mod_release_type }}
-          version: ${{ steps.info.outputs.minecraft_version }}-${{ steps.info.outputs.mod_version }}
+          version: ${{ steps.info.outputs.mod_version }}
           modrinth-files: build/libs/*.jar
 
           changelog: |
@@ -103,7 +103,7 @@ jobs:
           loaders: |
             ${{ steps.info.outputs.mod_loader }}
           version-type: ${{ steps.info.outputs.mod_release_type }}
-          version: ${{ steps.info.outputs.minecraft_version }}-${{ steps.info.outputs.mod_version }}
+          version: ${{ steps.info.outputs.mod_version }}
           curseforge-files: build/libs/*.jar
 
           changelog: |

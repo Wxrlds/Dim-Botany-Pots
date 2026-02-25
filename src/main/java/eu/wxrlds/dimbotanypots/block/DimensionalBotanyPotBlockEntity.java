@@ -5,6 +5,7 @@ import edivad.dimstorage.api.Frequency;
 import edivad.dimstorage.manager.DimStorageManager;
 import edivad.dimstorage.storage.DimChestStorage;
 import eu.wxrlds.dimbotanypots.DimBotanyPots;
+import net.darkhax.bookshelf.common.api.data.enchantment.EnchantmentLevel;
 import net.darkhax.bookshelf.common.api.service.Services;
 import net.darkhax.botanypots.common.api.context.BlockEntityContext;
 import net.darkhax.botanypots.common.api.data.recipes.crop.Crop;
@@ -134,11 +135,10 @@ public class DimensionalBotanyPotBlockEntity extends BotanyPotBlockEntity {
         if (pot.isRemoved() || pot.level == null) {
             return;
         }
+        final BlockEntityContext context = pot.getRecipeContext();
         if (pot.bonemealCooldown > 0) {
             pot.bonemealCooldown--;
         }
-
-        final BlockEntityContext context = pot.getRecipeContext();
 
         // Update soil
         final Soil soil = pot.getOrInvalidateSoil();
@@ -174,21 +174,9 @@ public class DimensionalBotanyPotBlockEntity extends BotanyPotBlockEntity {
                                 crop.onHarvest(context, level, stack -> Services.GAMEPLAY.addItem(stack, pot.getItems(), BotanyPotBlockEntity.STORAGE_SLOTS));
                             }
                             // Tool Damage Logic
-                            ItemStack tool = pot.getHarvestItem();
-                            if (BotanyPotsMod.CONFIG.get().gameplay.damage_harvest_tool && !tool.isEmpty()) {
-                                boolean negateDamage = false;
-                                var enchants = tool.getEnchantments();
-                                for (var entry : enchants.entrySet()) {
-                                    if (entry.getKey().is(Helpers.NEGATE_HARVEST_DAMAGE_TAG)) {
-                                        negateDamage = true;
-                                        break;
-                                    }
-                                }
-
-                                if (!negateDamage) {
-                                    tool.hurtAndBreak(1, serverLevel, null, (item) -> {
-                                    });
-                                }
+                            if (BotanyPotsMod.CONFIG.get().gameplay.damage_harvest_tool && EnchantmentLevel.FIRST.get(Helpers.NEGATE_HARVEST_DAMAGE_TAG, pot.getHarvestItem()) <= 0) {
+                                pot.getHarvestItem().hurtAndBreak(1, serverLevel, null, stack -> {
+                                });
                             }
 
                             level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(pot.getBlockState()));
@@ -204,11 +192,9 @@ public class DimensionalBotanyPotBlockEntity extends BotanyPotBlockEntity {
         if (pot.isHopper()) {
             pot.exportCooldown.tickDown(level);
             if (pot.exportCooldown.getTicks() <= 0) {
-                // Try to export to Dim Storage
-                // Get DimStorage
-                // Try to export to Dim Storage
-                DimChestStorage storage = (DimChestStorage) DimStorageManager.instance(level).getStorage(level.registryAccess(), pot.frequency, "item");
-                if (storage != null) {
+                if (level instanceof ServerLevel) {
+                    // Try to export to Dim Storage
+                    DimChestStorage storage = (DimChestStorage) DimStorageManager.instance(level).getStorage(level.registryAccess(), pot.frequency, "item");
                     IItemHandler dimHandler = new InvWrapper(storage);
                     boolean inventoryChanged = false;
 
@@ -227,8 +213,8 @@ public class DimensionalBotanyPotBlockEntity extends BotanyPotBlockEntity {
                     if (inventoryChanged) {
                         pot.setChanged();
                     }
+                    pot.exportCooldown.reset();
                 }
-                pot.exportCooldown.reset();
             }
         }
     }
